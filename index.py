@@ -1,3 +1,8 @@
+import firebase_admin
+from firebase_admin import credentials, firestore
+cred = credentials.Certificate("serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+
 from flask import Flask, render_template,request
 from datetime import datetime
 app = Flask(__name__)
@@ -10,6 +15,8 @@ def index():
 	homepage += "<a href=/welcome?nick=tcyang>傳送使用者暱稱</a><br>"
 	homepage += "<a href=/about>喬莘簡介網頁</a><br>"
 	homepage += "<a href=/account>輸入帳密</a><br>"
+	homepage += "<br><a href=/read>人選之人─造浪者演員名單</a><br>"
+
 	return homepage
 
 @app.route("/mis")
@@ -39,6 +46,17 @@ def account():
         return result
     else:
         return render_template("account.html")
+
+@app.route("/read")
+def read():
+    Result = ""
+    db = firestore.client()
+    collection_ref = db.collection("人選之人─造浪者")    
+    docs = collection_ref.get()    
+    for doc in docs:         
+        Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
+    return Result
+
 
 
 #if __name__ == "__main__":
