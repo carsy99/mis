@@ -35,7 +35,7 @@ docs = [
   "author": "陳喬莘",
   "cover": "(網路照片網址)",
   "url": "https://vercelme-pi.vercel.app/",
-  "anniversary": "20"
+  "anniversary": 20
 }
 
 ]
