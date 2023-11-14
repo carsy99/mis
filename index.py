@@ -68,6 +68,7 @@ def addbooks():
 		Result += "書名："+ bk["title"] + "<br>"
 		Result += "作者：" + bk["author"] + "<br>"
 		Result += str(bk["anniversary"]) + "周年紀念版<br>"
+		Result += "<img src=" + bk["cover"] + "></img><br><br>"
 	return Result
 
 
