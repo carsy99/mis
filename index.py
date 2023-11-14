@@ -63,9 +63,9 @@ def addbooks():
     db = firestore.client()
     collection_ref = db.collection("圖書精選")    
     docs = collection_ref.get()    
+    bk = doc.to_dict()
     for doc in docs:
-    	bk = doc.to_dict()         
-        Result += "書名：" + bk["title"] + "<br>"
+        Result += "書名："+ bk["title"] + "<br>"
     return Result
 
 
