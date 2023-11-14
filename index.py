@@ -66,8 +66,6 @@ def addbooks():
     for doc in docs:
     	bk = doc.to_dict()         
         Result += "書名：" + bk["title"] + "<br>"
-        Result += "作者：" + bk["author"] + "<br>"
-        Result += "周年：" + bk["anniversary"] + "<br>"
     return Result
 
 
