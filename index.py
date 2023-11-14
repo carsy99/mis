@@ -57,6 +57,18 @@ def read():
         Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
     return Result
 
+@app.route("/addbooks")
+def addbooks():
+    Result = ""
+    db = firestore.client()
+    collection_ref = db.collection("圖書精選")    
+    docs = collection_ref.get()    
+    for doc in docs:
+    	bk = doc.to_dict()         
+        Result += "書名：" + bk["title"] + "<br>"
+        Result += "作者：" + bk["author"] + "<br>"
+        Result += "周年：" + bk["anniversary"] + "<br>"
+    return Result
 
 
 #if __name__ == "__main__":
