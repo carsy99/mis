@@ -75,7 +75,7 @@ def addbooks():
 @app.route("/scbk", methods=["GET", "POST"])
 def scbk():
 	if request.method == "POST":
-		user = request.form["keyword"]
+		keyword = request.form["keyword"]
 		result = "您輸入的關鍵字是：" + keyword
 		Result = ""
 		db = firestore.client()
