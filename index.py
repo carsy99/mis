@@ -17,6 +17,7 @@ def index():
 	homepage += "<a href=/account>輸入帳密</a><br>"
 	homepage += "<br><a href=/read>人選之人─造浪者演員名單</a><br>"
 	homepage += "<br><a href=/addbooks>圖書精選</a><br>"
+	homepage += "<a href=/addbooks>圖書精選</a><br>"
 	return homepage
 
 @app.route("/mis")
@@ -71,6 +72,13 @@ def addbooks():
 		Result += "<img src=" + bk["cover"] + "></img><br><br>"
 	return Result
 
-
+@app.route("/scbk", methods=["GET", "POST"])
+def scbk():
+    if request.method == "POST":
+        user = request.form["keyword"]
+        result = "您輸入的關鍵字是：" + keword
+        return result
+    else:
+        return render_template("scbk.html")
 #if __name__ == "__main__":
 #	app.run(debug=True)
