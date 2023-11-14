@@ -59,14 +59,14 @@ def read():
 
 @app.route("/addbooks")
 def addbooks():
-    Result = ""
-    db = firestore.client()
-    collection_ref = db.collection("圖書精選")    
-    docs = collection_ref.get()    
-    bk = doc.to_dict()
-    for doc in docs:
-        Result += "書名："+ bk["title"] + "<br>"
-    return Result
+	Result = ""
+	db = firestore.client()
+	collection_ref = db.collection("圖書精選")    
+	docs = collection_ref.get()    
+	for doc in docs:
+		bk = doc.to_dict()
+		Result += "書名："+ bk["title"] + "<br>"
+	return Result
 
 
 #if __name__ == "__main__":
