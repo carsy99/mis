@@ -77,6 +77,10 @@ def scbk():
 	if request.method == "POST":
 		user = request.form["keyword"]
 		result = "您輸入的關鍵字是：" + keyword
+		Result = ""
+		db = firestore.client()
+		collection_ref = db.collection("圖書精選")    
+		docs = collection_ref.get()
 		for doc in docs:
 			bk = doc.to_dict()
 			if keyword in bk["title"]:
