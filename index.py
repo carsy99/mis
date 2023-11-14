@@ -74,11 +74,21 @@ def addbooks():
 
 @app.route("/scbk", methods=["GET", "POST"])
 def scbk():
-    if request.method == "POST":
-        user = request.form["keyword"]
-        result = "您輸入的關鍵字是：" + keyword
-        return result
-    else:
-        return render_template("scbk.html")
+	if request.method == "POST":
+		user = request.form["keyword"]
+		result = "您輸入的關鍵字是：" + keyword
+		for doc in docs:
+			bk = doc.to_dict()
+			if keyword in bk["title"]:
+			Result += "書名：<a href=" + bk["url"] + ">"+ bk["title"] + "</a><br>"
+			Result += "作者：" + bk["author"] + "<br>"
+			Result += str(bk["anniversary"]) + "周年紀念版<br>"
+			Result += "<img src=" + bk["cover"] + "></img><br><br>"
+
+		return Result
+	else:
+		return render_template("scbk.html")
+
+
 #if __name__ == "__main__":
 #	app.run(debug=True)
