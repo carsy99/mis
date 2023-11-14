@@ -61,8 +61,8 @@ def read():
 @app.route("/addbooks")
 def addbooks():
     Result = ""
-    ab = firestore.client()
-    collection_ref = ab.collection("圖書精選")    
+    db = firestore.client()
+    collection_ref = db.collection("圖書精選")    
     docs = collection_ref..get()    
     for doc in docs:
     	bk = doc.to_dict()         
