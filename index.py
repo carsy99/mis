@@ -105,7 +105,7 @@ def spider():
 	result=sp.select(".team-box")
 	info = ""
 	for x in result:
-		info += "<a href=" + x.find("a").get("href") +">" + x.text + "<br>"
+		info += "<a href=" + x.find("a").get("href")  + x.text +">" + "<br>"
 		info += x.find("a").get("href") + "<br><br>"
 	return info
 
