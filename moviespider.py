@@ -23,7 +23,7 @@ for item in result:
   show = show.replace("片長：", "")
   show = show.replace("分", "")
   showDate = show[0:10]
-  showLength = show[0:2]
+  showLength = show[13:]
   
   doc = {
       "title": title,
