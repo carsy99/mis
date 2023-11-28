@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 @app.route("/")
 def index():
-	homepage = "<h1>陳喬莘Python網頁1128</h1>"
+	homepage = "<h1>陳喬莘Python網頁11-28</h1>"
 	homepage += "<a href=/mis>MIS</a><br>"
 	homepage += "<a href=/today>顯示日期時間</a><br>"
 	homepage += "<a href=/welcome?nick=tcyang>傳送使用者暱稱</a><br>"
@@ -23,7 +23,7 @@ def index():
 	homepage += "<a href=/scbk>圖書查詢</a><br>"
 	homepage += "<br><a href=/spider>網路爬蟲子青老師的課程</a><br>"
 	homepage += "<br><a href=/movie>讀取開眼電影即將上映影片，寫入Firestore</a><br>"
-	homepage += "<a href=/movie>開眼電影查詢</a><br>"
+	homepage += "<a href=/searchQ>開眼電影查詢</a><br>"
 	return homepage
 
 @app.route("/mis")
@@ -129,8 +129,7 @@ def movie():
     show = show.replace("片長：", "")
     show = show.replace("分", "")
     showDate = show[0:10]
-    showLength = show[13:]
-
+    showLength = show[1:3]
     doc = {
         "title": title,
         "picture": picture,
@@ -139,7 +138,6 @@ def movie():
         "showLength": showLength,
         "lastUpdate": lastUpdate
       }
-
     db = firestore.client()
     doc_ref = db.collection("電影").document(movie_id)
     doc_ref.set(doc)    
