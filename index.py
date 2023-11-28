@@ -129,7 +129,7 @@ def movie():
     show = show.replace("片長：", "")
     show = show.replace("分", "")
     showDate = show[0:10]
-    showLength = show[0:3]
+    showLength = show[-1:2]
     doc = {
         "title": title,
         "picture": picture,
