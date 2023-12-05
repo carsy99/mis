@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 @app.route("/")
 def index():
-	homepage = "<h1>陳喬莘Python網頁1128</h1>"
+	homepage = "<h1>陳喬莘Python網頁1205</h1>"
 	homepage += "<a href=/mis>MIS</a><br>"
 	homepage += "<a href=/today>顯示日期時間</a><br>"
 	homepage += "<a href=/welcome?nick=tcyang>傳送使用者暱稱</a><br>"
