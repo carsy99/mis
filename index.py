@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 
 @app.route("/")
 def index():
-	homepage = "<h1>陳喬莘Python網頁12.05</h1>"
+	homepage = "<h1>陳喬莘Python網頁1205</h1>"
 	homepage += "<a href=/mis>MIS</a><br>"
 	homepage += "<a href=/today>顯示日期時間</a><br>"
 	homepage += "<a href=/welcome?nick=tcyang>傳送使用者暱稱</a><br>"
@@ -233,12 +233,21 @@ def webhook2():
 	req = request.get_json(force=True)
 	# fetch queryResult from json
 	action =  req.get("queryResult").get("action")
-	#msg =  req.get("queryResult").get("queryText")
-	#info = "動作：" + action + "； 查詢內容：" + msg
 	if (action == "rateChoice"):
 		rate =  req.get("queryResult").get("parameters").get("rate")
 		info = "您選擇的電影分級是：" + rate
 	return make_response(jsonify({"fulfillmentText": info}))
+
+@app.route("/webhook3", methods=["POST"])
+def webhook3():
+	# build a request object
+	req = request.get_json(force=True)
+	# fetch queryResult from json
+	action =  req.get("queryResult").get("action")
+	if (action == "rateChoice"):
+		rate =  req.get("queryResult").get("parameters").get("rate")
+		info = "我是陳喬莘開發的電影聊天機器人,您選擇的電影分級是：" + rate + "，相關電影：\n"
+
 
 
 #if __name__ == "__main__":
