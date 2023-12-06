@@ -3,7 +3,8 @@ from firebase_admin import credentials, firestore
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request,make_response,jsonify
+
 from datetime import datetime
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ from bs4 import BeautifulSoup
 
 @app.route("/")
 def index():
-	homepage = "<h1>陳喬莘Python網頁1205</h1>"
+	homepage = "<h1>陳喬莘Python網頁12.05</h1>"
 	homepage += "<a href=/mis>MIS</a><br>"
 	homepage += "<a href=/today>顯示日期時間</a><br>"
 	homepage += "<a href=/welcome?nick=tcyang>傳送使用者暱稱</a><br>"
@@ -215,6 +216,17 @@ def movie_rate():
 		doc_ref = db.collection("電影含分級").document(movie_id)
 		doc_ref.set(doc)
 	return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
+
+@app.route("/webhook", methods=["POST"])
+def webhook():
+	# build a request object
+	req = request.get_json(force=True)
+	# fetch queryResult from json
+	action =  req.get("queryResult").get("action")
+	msg =  req.get("queryResult").get("queryText")
+	info = "動作：" + action + "； 查詢內容：" + msg
+	return make_response(jsonify({"fulfillmentText": info}))
+
 
 
 
